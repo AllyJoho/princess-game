@@ -9,11 +9,14 @@
 script = ExtResource("1_v6fml")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1777005279]
-position = Vector2(0, -48)
-scale = Vector2(0.5, 0.75)
+position = Vector2(0, -38)
+scale = Vector2(0.4, 0.6)
 texture = ExtResource("1_p0vlq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=447563033]
-position = Vector2(0, -48.000004)
-scale = Vector2(3.1999989, 4.800004)
+position = Vector2(0, -38.000004)
+scale = Vector2(2.579998, 3.8399975)
 shape = SubResource("RectangleShape2D_v6fml")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=900140496]
+position = Vector2(0, -180)
