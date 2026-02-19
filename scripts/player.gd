@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var max_fall = 2000
 
 func _physics_process(delta: float) -> void:
+	print(position)
 	if !is_on_floor():
 		velocity.y += gravity
 		if velocity.y > max_fall:
