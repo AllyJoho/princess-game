@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var jump_force = 900
 @export var max_fall = 2000
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if !is_on_floor():
 		velocity.y += gravity
 		if velocity.y > max_fall:
