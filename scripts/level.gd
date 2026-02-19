@@ -13,7 +13,7 @@ var gift_place = preload("res://assets/sprites/tiles/dirt_block.png")
 var level_width = 14
 var level_height = 30
 var block_length = 64
-var half_platform_chance = 0.6
+var half_platform_chance = 0.2
 
 func spawn_object(x,y,object,texture=null):
 	var p = object.instantiate()
@@ -41,9 +41,11 @@ func build_leg(side, y_pos, wall_pos, is_gift):
 		spawn_object(x_pos,y_pos, platform, stone_texture)
 
 func build_half_platforms(y_pos, wall_pos):
+	var chance = [half_platform_chance, half_platform_chance, 1]
+	chance.shuffle()
 	for i in range(3):
 		var x_pos = -wall_pos+(5 + 2*i)*block_length + randf_range(-1,1)*(block_length/2)
-		if randf() > half_platform_chance:
+		if randf() < chance[i]:
 			spawn_object(x_pos,y_pos, half_platform)
 	pass
 
