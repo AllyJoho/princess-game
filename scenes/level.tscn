@@ -7,3 +7,5 @@
 script = ExtResource("1_w7c3h")
 
 [node name="CharacterBody2D" parent="." unique_id=1334906514 instance=ExtResource("1_2q6dc")]
+gravity = 20
+jump_force = 820

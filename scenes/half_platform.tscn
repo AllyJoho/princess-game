@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bv1cx185aooa2"]
+
+[ext_resource type="Texture2D" uid="uid://dndsgy3qtaqd" path="res://assets/sprites/tiles/path_stone_slab.png" id="1_mw7u6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3elp3"]
+size = Vector2(20, 32)
+
+[node name="halfPlatform" type="StaticBody2D" unique_id=2109508709]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1976171307]
+texture = ExtResource("1_mw7u6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=636265910]
+position = Vector2(0, -16)
+scale = Vector2(3.1999977, 1)
+shape = SubResource("RectangleShape2D_3elp3")
+one_way_collision = true
