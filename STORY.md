@@ -23,6 +23,7 @@ graph TD
     %% --- FLOWER QUEST ---
     subgraph Flower_Quest [The Flower Quest]
         GoalCheck -->|Flowers| F_Has{Has Flowers?}
+        
         F_Has -->|No| F_G_Check{Gems >= 10?}
         F_Has -->|Yes| F_Count{Count >= 8?}
         
