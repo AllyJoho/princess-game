@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cnjbqncnueq6m"]
+
+[ext_resource type="Script" uid="uid://c2t8od3xaoxrt" path="res://scripts/level.gd" id="1_ay4al"]
+[ext_resource type="PackedScene" uid="uid://xnlp11j8skng" path="res://scenes/Player.tscn" id="2_ktxwe"]
+
+[node name="Tower" type="Node2D" unique_id=1034955630]
+script = ExtResource("1_ay4al")
+
+[node name="CharacterBody2D" parent="." unique_id=1334906514 instance=ExtResource("2_ktxwe")]
