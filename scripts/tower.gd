@@ -15,6 +15,7 @@ var gift_platform_texture = preload("res://assets/tiles/gift_platform.png")
 @export var level_width = 14
 @export var floors = 25
 @export var block_size = 64.0
+@export var platform_size = 112.0
 @export var platform_chance = 0.2
 var wall_pos = (level_width*block_size)/2
 var total_platforms = floors
@@ -34,7 +35,7 @@ func get_unique_random_numbers(min_val: int, max_val: int, count: int) -> Array:
 	return possible_numbers.slice(0, count)
 
 func build_platform(y_pos, is_gift):
-	var x_pos = randf_range(-wall_pos+block_size, wall_pos-block_size)
+	var x_pos = randf_range(-wall_pos+platform_size, wall_pos-platform_size)
 	if is_gift != -1:
 		spawn_object(x_pos,y_pos, platform, gift_platform_texture)
 	else:
@@ -50,8 +51,8 @@ func build_walls():
 		spawn_object(-wall_pos-5*block_size,y_pos, block)
 		for j in range(7):
 			spawn_object(wall_pos+j*block_size,y_pos, block, wall_texture)
-	for j in range(level_width-7,level_width):
-		spawn_object((-wall_pos+j*block_size),y_pos, platform, platform_texture)
+	for j in range(level_width-10,level_width):
+		spawn_object((-wall_pos+j*platform_size),y_pos, platform, platform_texture)
 
 func build_tower():
 	var y_pos = -block_size*2
