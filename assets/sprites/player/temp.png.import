@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjbuwxftg8fna"
-path="res://.godot/imported/KNIGHT.png-7d79f99ab9d0622b712a390ef044e346.ctex"
+uid="uid://p5wg2xcjq7l6"
+path="res://.godot/imported/temp.png-394826a18e6941e3f77d008f520b4a21.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/KNIGHT.png"
-dest_files=["res://.godot/imported/KNIGHT.png-7d79f99ab9d0622b712a390ef044e346.ctex"]
+source_file="res://assets/sprites/player/temp.png"
+dest_files=["res://.godot/imported/temp.png-394826a18e6941e3f77d008f520b4a21.ctex"]
 
 [params]
 

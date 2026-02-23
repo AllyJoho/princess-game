@@ -46,7 +46,6 @@ func build_walls():
 		spawn_object((-wall_pos+j*block_size),y_pos, block, grass_texture)
 		spawn_object((-wall_pos+j*block_size),y_pos+block_size, block, dirt_texture)
 	for i in range(floors+4):
-		#if i == 0:
 		y_pos -= block_size
 		spawn_object(-wall_pos,y_pos, block, wall_texture)
 		spawn_object(wall_pos,y_pos, block, wall_texture)
