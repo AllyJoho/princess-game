@@ -51,8 +51,9 @@ func build_walls():
 		spawn_object(-wall_pos-5*block_size,y_pos, block)
 		for j in range(7):
 			spawn_object(wall_pos+j*block_size,y_pos, block, wall_texture)
-	for j in range(level_width-10,level_width):
-		spawn_object((-wall_pos+j*platform_size),y_pos, platform, platform_texture)
+	var offset = platform_size/2 + block_size/2
+	for j in range(4):
+		spawn_object(wall_pos-offset-j*platform_size,y_pos, platform, platform_texture)
 
 func build_tower():
 	var y_pos = -block_size*2
