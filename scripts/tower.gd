@@ -5,11 +5,11 @@ var rng: RandomNumberGenerator
 var block = preload("res://scenes/block.tscn")
 var platform = preload("res://scenes/platform.tscn")
 #Textures
-var grass_texture = preload("res://assets/sprites/tiles/grass_dirt.png")
-var dirt_texture = preload("res://assets/sprites/tiles/dirt_block.png")
-var wall_texture = preload("res://assets/sprites/tiles/stone_wall.png")
-var platform_texture = preload("res://assets/sprites/tiles/path_stone_slab.png")
-var gift_platform_texture = preload("res://assets/sprites/tiles/snow_stone_slab.png")
+var grass_texture = preload("res://assets/tiles/grass.png")
+var dirt_texture = preload("res://assets/tiles/dirt.png")
+var wall_texture = preload("res://assets/tiles/wall.png")
+var platform_texture = preload("res://assets/tiles/platform.png")
+var gift_platform_texture = preload("res://assets/tiles/gift_platform.png")
 
 # Important Numbers
 @export var level_width = 14
@@ -42,14 +42,15 @@ func build_platform(y_pos, is_gift):
 
 func build_walls():
 	var y_pos = block_size
-	for j in range(-5,level_width+6):
+	for j in range(-6,level_width+7):
 		spawn_object((-wall_pos+j*block_size),y_pos, block, grass_texture)
 		spawn_object((-wall_pos+j*block_size),y_pos+block_size, block, dirt_texture)
 	for i in range(floors+4):
 		y_pos -= block_size
-		spawn_object(-wall_pos,y_pos, block, wall_texture)
-		spawn_object(wall_pos,y_pos, block, wall_texture)
-	for j in range(1,level_width-1):
+		spawn_object(-wall_pos-5*block_size,y_pos, block)
+		for j in range(7):
+			spawn_object(wall_pos+j*block_size,y_pos, block, wall_texture)
+	for j in range(level_width-7,level_width):
 		spawn_object((-wall_pos+j*block_size),y_pos, platform, platform_texture)
 
 func build_tower():

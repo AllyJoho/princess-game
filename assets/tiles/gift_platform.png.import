@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bexcgkjpqhrff"
-path="res://.godot/imported/dirt_block.png-f42e112bc6c6d4a97e5f5e411fed5fa4.ctex"
+uid="uid://dndsgy3qtaqd"
+path="res://.godot/imported/gift_platform.png-2ec915014ecaa69d731f7742169ceacb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/tiles/dirt_block.png"
-dest_files=["res://.godot/imported/dirt_block.png-f42e112bc6c6d4a97e5f5e411fed5fa4.ctex"]
+source_file="res://assets/tiles/gift_platform.png"
+dest_files=["res://.godot/imported/gift_platform.png-2ec915014ecaa69d731f7742169ceacb.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dndsgy3qtaqd"
-path="res://.godot/imported/path_stone_slab.png-62b735c7fb34e27e29af1de00d6fd52d.ctex"
+uid="uid://cxlji5dhijf3t"
+path="res://.godot/imported/platform.png-084d9cbdbf9eef1648f2b7c862141de1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/tiles/path_stone_slab.png"
-dest_files=["res://.godot/imported/path_stone_slab.png-62b735c7fb34e27e29af1de00d6fd52d.ctex"]
+source_file="res://assets/tiles/platform.png"
+dest_files=["res://.godot/imported/platform.png-084d9cbdbf9eef1648f2b7c862141de1.ctex"]
 
 [params]
 

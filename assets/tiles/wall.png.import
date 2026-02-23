@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxlji5dhijf3t"
-path="res://.godot/imported/snow_stone_slab.png-adc1b2db722ca04a32964641e0ec7e23.ctex"
+uid="uid://ruq50k0xbfta"
+path="res://.godot/imported/wall.png-f7e6aa960b33edcf5496f6f9fadc2ac8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/tiles/snow_stone_slab.png"
-dest_files=["res://.godot/imported/snow_stone_slab.png-adc1b2db722ca04a32964641e0ec7e23.ctex"]
+source_file="res://assets/tiles/wall.png"
+dest_files=["res://.godot/imported/wall.png-f7e6aa960b33edcf5496f6f9fadc2ac8.ctex"]
 
 [params]
 
