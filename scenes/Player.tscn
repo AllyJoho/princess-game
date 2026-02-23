@@ -33,26 +33,6 @@ region = Rect2(960, 1152, 192, 192)
 atlas = ExtResource("2_v6fml")
 region = Rect2(0, 576, 192, 192)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0rnld"]
-atlas = ExtResource("2_v6fml")
-region = Rect2(192, 576, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_srp4u"]
-atlas = ExtResource("2_v6fml")
-region = Rect2(384, 576, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jfpux"]
-atlas = ExtResource("2_v6fml")
-region = Rect2(576, 576, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_61ith"]
-atlas = ExtResource("2_v6fml")
-region = Rect2(768, 576, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ebwui"]
-atlas = ExtResource("2_v6fml")
-region = Rect2(960, 576, 192, 192)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_sfy4j"]
 atlas = ExtResource("2_v6fml")
 region = Rect2(0, 960, 192, 192)
@@ -101,29 +81,13 @@ region = Rect2(768, 0, 192, 192)
 atlas = ExtResource("2_v6fml")
 region = Rect2(960, 0, 192, 192)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fgkxt"]
-atlas = ExtResource("2_v6fml")
-region = Rect2(0, 384, 192, 192)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_xsi7p"]
 atlas = ExtResource("2_v6fml")
 region = Rect2(192, 384, 192, 192)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1jpwa"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgkxt"]
 atlas = ExtResource("2_v6fml")
-region = Rect2(384, 384, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pfeki"]
-atlas = ExtResource("2_v6fml")
-region = Rect2(576, 384, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_axnmu"]
-atlas = ExtResource("2_v6fml")
-region = Rect2(768, 384, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fvsjc"]
-atlas = ExtResource("2_v6fml")
-region = Rect2(960, 384, 192, 192)
+region = Rect2(0, 384, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hxdpb"]
 atlas = ExtResource("2_v6fml")
@@ -196,30 +160,15 @@ animations = [{
 }],
 "loop": true,
 "name": &"bonk",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_p7iby")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0rnld")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_srp4u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jfpux")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_61ith")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ebwui")
 }],
 "loop": true,
 "name": &"fall",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -242,7 +191,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"grab",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -265,30 +214,18 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 7.0
+"speed": 3.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fgkxt")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xsi7p")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1jpwa")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pfeki")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_axnmu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fvsjc")
+"texture": SubResource("AtlasTexture_fgkxt")
 }],
 "loop": true,
 "name": &"jump",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -311,7 +248,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"love",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -334,7 +271,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 3.0
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1334906514]
@@ -342,17 +279,20 @@ script = ExtResource("1_v6fml")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=447563033]
 position = Vector2(0, -40)
-scale = Vector2(3, 4)
+scale = Vector2(2.5, 4)
 shape = SubResource("RectangleShape2D_v6fml")
+debug_color = Color(1.1551381e-06, 0.5803586, 0.8026886, 0.41960785)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=754583823]
 position = Vector2(0, -200)
+zoom = Vector2(2, 2)
 limit_left = 0
 limit_right = 0
 limit_bottom = 100
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1420514329]
-position = Vector2(-2, -34)
+position = Vector2(-4, -34)
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_bruh7")
-animation = &"bonk"
+animation = &"jump"
+frame_progress = 0.6633148

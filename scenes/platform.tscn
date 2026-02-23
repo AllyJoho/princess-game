@@ -1,11 +1,14 @@
-[gd_scene format=3 uid="uid://bjq2g8ncjvsgi"]
+[gd_scene format=3 uid="uid://bv1cx185aooa2"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ajho"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3elp3"]
+size = Vector2(20, 32)
 
-[node name="Platform" type="StaticBody2D" unique_id=356022558]
+[node name="platform" type="StaticBody2D" unique_id=2109508709]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=270067506]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1976171307]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1220807351]
-scale = Vector2(3.200001, 3.1999984)
-shape = SubResource("RectangleShape2D_5ajho")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=636265910]
+position = Vector2(0, -16)
+scale = Vector2(3.1999977, 1)
+shape = SubResource("RectangleShape2D_3elp3")
+one_way_collision = true
