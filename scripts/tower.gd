@@ -73,7 +73,7 @@ func build_platform(y_pos, gift_category: String) -> void:
 	if gift_category != "":
 		var gift_obj = gift.instantiate()
 		gift_obj.position = Vector2(x_pos, y_pos - block_size)
-		gift_obj.category = gift_category
+		gift_obj.index = GameState.ITEM_NAMES.find(gift_category)
 		# Connect to item menu when UI is ready
 		# gift_obj.item_touched.connect(item_menu.open_for_item)
 		add_child(gift_obj)
