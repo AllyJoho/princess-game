@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://item_scene_001"]
+
+[ext_resource type="Script" path="res://scripts/item.gd" id="1_item"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_item"]
+radius = 32.0
+
+[node name="Item" type="Area2D"]
+script = ExtResource("1_item")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_item")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+position = Vector2(-30, -60)
+text = "?"
