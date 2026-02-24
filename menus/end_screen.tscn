@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cuxka001jcrec"]
+
+[ext_resource type="Script" uid="uid://oumcynl6ppat" path="res://menus/end_screen.gd" id="1_3s4t6"]
+
+[node name="End_Screen" type="Control" unique_id=1855265330]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3s4t6")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=393011850]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = -270.0
+offset_right = 270.0
+offset_bottom = 270.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=56674563]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 57
+
+[node name="Message" type="Label" parent="PanelContainer/VBoxContainer" unique_id=958816131]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Game Over!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="try_again" type="Button" parent="PanelContainer/VBoxContainer" unique_id=826583323]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Try Again"
+
+[node name="give_up" type="Button" parent="PanelContainer/VBoxContainer" unique_id=960321339]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Lose Heart"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/try_again" to="." method="_on_try_again_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/give_up" to="." method="_on_give_up_pressed"]

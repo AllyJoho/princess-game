@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://deqn1v1sh7tmf" path="res://scripts/tower.gd" id="1_ay4al"]
 [ext_resource type="PackedScene" uid="uid://xnlp11j8skng" path="res://scenes/Player.tscn" id="2_ktxwe"]
 [ext_resource type="Texture2D" uid="uid://ckclvwqtprqpm" path="res://assets/background_refrence.png" id="2_qrbg1"]
+[ext_resource type="PackedScene" uid="uid://ixut5uch0c0w" path="res://menus/pause_menu.tscn" id="4_qrbg1"]
+[ext_resource type="PackedScene" uid="uid://bvs3nicr3sxv6" path="res://scenes/end_interface.tscn" id="5_jfguu"]
 
 [node name="Tower" type="Node2D" unique_id=1034955630]
 script = ExtResource("1_ay4al")
@@ -16,3 +18,29 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_qrbg1")
 
 [node name="Knight" parent="." unique_id=1334906514 instance=ExtResource("2_ktxwe")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=308829385]
+
+[node name="PauseMenu" parent="CanvasLayer" unique_id=573906062 instance=ExtResource("4_qrbg1")]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=375279745]
+z_index = 1000
+offset_left = 416.0
+offset_top = 32.0
+offset_right = 480.0
+offset_bottom = 96.0
+rotation = -1.5707964
+scale = Vector2(29, 5)
+color = Color(1, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1735572012]
+z_index = 1000
+offset_left = -30.0
+offset_top = -1904.0
+offset_right = 20.0
+offset_bottom = -1824.0
+color = Color(0.5606185, 0.4613108, 0.82337165, 1)
+
+[node name="End_Interface" parent="." unique_id=1474081801 instance=ExtResource("5_jfguu")]
+position = Vector2(470, -2004)

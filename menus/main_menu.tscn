@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://bkqkh87sk8xjl"]
+
+[ext_resource type="Script" uid="uid://d0tehw3scxc5s" path="res://menus/main_menu.gd" id="1_8gy84"]
+
+[sub_resource type="Theme" id="Theme_vue75"]
+
+[node name="MainMenu" type="Node2D" unique_id=613818884]
+script = ExtResource("1_8gy84")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1489732978]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(48, 27)
+mouse_filter = 2
+color = Color(0.97075266, 0.4382763, 0.5730102, 1)
+
+[node name="Title" type="Label" parent="." unique_id=741666809]
+offset_right = 1920.0
+offset_bottom = 500.0
+theme_override_font_sizes/font_size = 200
+text = "Worth The Climb"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=21042683]
+offset_top = 500.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme = SubResource("Theme_vue75")
+
+[node name="MainButtons" type="VBoxContainer" parent="CenterContainer" unique_id=2139736182]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="play" type="Button" parent="CenterContainer/MainButtons" unique_id=1157566346]
+custom_minimum_size = Vector2(353, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Play"
+
+[node name="credits" type="Button" parent="CenterContainer/MainButtons" unique_id=1153736158]
+custom_minimum_size = Vector2(353, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Credits"
+
+[node name="quit" type="Button" parent="CenterContainer/MainButtons" unique_id=1498247093]
+custom_minimum_size = Vector2(353, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Quit"
+
+[node name="CreditsMenu" type="VBoxContainer" parent="CenterContainer" unique_id=96825074]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="credits" type="Label" parent="CenterContainer/CreditsMenu" unique_id=1198689162]
+custom_minimum_size = Vector2(1500, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "A Game by Allison Johanson
+Art and story by Michelle Johanson"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="back" type="Button" parent="CenterContainer/CreditsMenu" unique_id=1027824895]
+custom_minimum_size = Vector2(353, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 75
+text = "Back"
+
+[connection signal="pressed" from="CenterContainer/MainButtons/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CenterContainer/MainButtons/credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="CenterContainer/MainButtons/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CenterContainer/CreditsMenu/back" to="." method="_on_back_pressed"]

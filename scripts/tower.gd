@@ -4,6 +4,7 @@ var rng: RandomNumberGenerator
 # Objects
 var block = preload("res://scenes/block.tscn")
 var platform = preload("res://scenes/platform.tscn")
+var gift = preload("res://scenes/gift.tscn")
 #Textures
 var grass_texture = preload("res://assets/tiles/grass.png")
 var dirt_texture = preload("res://assets/tiles/dirt.png")
@@ -38,6 +39,11 @@ func build_platform(y_pos, is_gift):
 	var x_pos = randf_range(-wall_pos+platform_size, wall_pos-platform_size)
 	if is_gift != -1:
 		spawn_object(x_pos,y_pos, platform, gift_platform_texture)
+		var gift_obj = gift.instantiate()
+		gift_obj.position = Vector2(x_pos,y_pos-block_size)
+		gift_obj.index = is_gift
+		add_child(gift_obj)
+		print(is_gift)
 	else:
 		spawn_object(x_pos,y_pos, platform, platform_texture)
 
@@ -62,6 +68,6 @@ func build_tower():
 		build_platform(y_pos-i*block_size, gift_platforms.find(i))
 
 func _ready():
-	rng = RandomNumberGenerator.new()
+	GameState.start_timer()
 	build_walls()
 	build_tower()

@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bvs3nicr3sxv6"]
+
+[ext_resource type="Script" uid="uid://d06jktv7aq17a" path="res://scripts/end_interface.gd" id="1_q2tpa"]
+[ext_resource type="PackedScene" uid="uid://cuxka001jcrec" path="res://menus/end_screen.tscn" id="2_q7fmj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ol7lq"]
+
+[node name="End_Interface" type="Area2D" unique_id=1474081801]
+script = ExtResource("1_q2tpa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=288394223]
+position = Vector2(-250, 0)
+scale = Vector2(25, 10)
+shape = SubResource("RectangleShape2D_ol7lq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1469050600]
+position = Vector2(-14, 130)
+scale = Vector2(4, 5)
+shape = SubResource("RectangleShape2D_ol7lq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=261198366]
+
+[node name="End_Screen" parent="CanvasLayer" unique_id=1855265330 instance=ExtResource("2_q7fmj")]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1680767290]
+visible = false
+offset_left = -500.0
+offset_top = -100.0
+offset_right = -460.0
+offset_bottom = -60.0
+scale = Vector2(13.040001, 5)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1652996202]
+visible = false
+offset_left = -54.0
+offset_top = -20.000004
+offset_right = -14.0
+offset_bottom = 19.999996
+scale = Vector2(2.1599998, 5)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
