@@ -1,7 +1,11 @@
 extends Node2D
 
 # ──────────────────────────────────────────────
-#  tower.gd  (merged)
+#  tower.gd  (fixed)
+#  Changes:
+#   - gift_obj.item_touched signal connection removed (gift.gd handles itself)
+#   - Intro cutscene now fires on attempt 1
+#   - gift.tscn used (sister's system)
 # ──────────────────────────────────────────────
 
 var rng: RandomNumberGenerator
@@ -9,7 +13,7 @@ var rng: RandomNumberGenerator
 # Objects
 var block    = preload("res://scenes/block.tscn")
 var platform = preload("res://scenes/platform.tscn")
-var gift     = preload("res://scenes/gift.tscn")   # using sister's gift.tscn
+var gift     = preload("res://scenes/gift.tscn")
 
 # Textures
 var grass_texture         = preload("res://assets/tiles/grass.png")
@@ -28,8 +32,7 @@ var wall_pos        = 0.0
 var total_platforms = 0
 
 # Node references
-@onready var item_menu: CanvasLayer = $ItemMenu
-@onready var cutscene:  CanvasLayer = $Cutscene
+@onready var cutscene: CanvasLayer = $Cutscene
 
 
 func _ready() -> void:
@@ -41,11 +44,12 @@ func _ready() -> void:
 	build_walls()
 	build_tower()
 
-	# Play intro only on the very first attempt
-	# (commented out until cutscene UI is positioned)
-	#if GameState.attempt_number <= 1:
-	#	cutscene.play_intro()
-	#	await cutscene.dialogue_finished
+	# Play intro on first attempt, retry hints on subsequent attempts
+	if GameState.attempt_number <= 1:
+		cutscene.play_intro()
+	else:
+		var hint = GameState.get_hint_for_attempt()
+		cutscene.play_retry_hints(hint, GameState.attempt_number)
 
 
 func spawn_object(x, y, object, texture = null):
@@ -74,8 +78,6 @@ func build_platform(y_pos, gift_category: String) -> void:
 		var gift_obj = gift.instantiate()
 		gift_obj.position = Vector2(x_pos, y_pos - block_size)
 		gift_obj.index = GameState.ITEM_NAMES.find(gift_category)
-		# Connect to item menu when UI is ready
-		# gift_obj.item_touched.connect(item_menu.open_for_item)
 		add_child(gift_obj)
 
 

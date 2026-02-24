@@ -22,10 +22,9 @@ const COLOR_DRAGON   = "#00cc44"   # green
 const COLOR_PRINCESS = "#ff88bb"   # pink
 const COLOR_KNIGHT   = "#aaaaaa"   # grey
 
-# Emitted when the full dialogue sequence finishes
 signal dialogue_finished
 
-var _lines: Array  = []   # Array of { "speaker": String, "text": String }
+var _lines: Array  = []
 var _current_index: int = 0
 var _waiting_for_input: bool = false
 
@@ -37,7 +36,27 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not _waiting_for_input:
 		return
-	if event.is_action_just_pressed("ui_accept") or event.is_action_just_pressed("jump"):
+	if not (event is InputEventKey or event is InputEventJoypadButton):
+		return
+
+	var should_advance = false
+
+	# Check all mapped actions that should advance dialogue
+	if event.is_action_just_pressed("jump"):
+		should_advance = true
+	elif event.is_action_just_pressed("ui_accept"):
+		should_advance = true
+	elif event.is_action_just_pressed("ui_select"):
+		should_advance = true
+	# Direct key fallback — catches Space even if action mapping is consumed
+	elif event is InputEventKey and event.pressed and not event.echo:
+		if event.physical_keycode == KEY_SPACE \
+		or event.physical_keycode == KEY_ENTER \
+		or event.physical_keycode == KEY_KP_ENTER:
+			should_advance = true
+
+	if should_advance:
+		get_viewport().set_input_as_handled()  # prevent input leaking to player
 		_advance()
 
 
@@ -45,13 +64,6 @@ func _unhandled_input(event: InputEvent) -> void:
 #  Public API
 # ────────────────────────────────────────────
 
-## Start a cutscene with an array of dialogue lines.
-## Each line is a Dictionary: { "speaker": "Dragon"|"Princess"|"Knight", "text": "..." }
-## Example:
-##   Cutscene.play_dialogue([
-##       { "speaker": "Dragon",   "text": "Why hello, brave Knight!" },
-##       { "speaker": "Knight",   "text": "I am here to rescue the princess!" },
-##   ])
 func play_dialogue(lines: Array) -> void:
 	_lines = lines
 	_current_index = 0
@@ -60,8 +72,6 @@ func play_dialogue(lines: Array) -> void:
 	_show_line(_current_index)
 
 
-## Build a line dictionary — convenience helper so callers don't
-## have to remember the key names.
 static func line(speaker: String, text: String) -> Dictionary:
 	return { "speaker": speaker, "text": text }
 
@@ -110,10 +120,8 @@ func _color_for_speaker(speaker: String) -> String:
 
 # ────────────────────────────────────────────
 #  Pre-written dialogue sequences
-#  Call these from princess.gd or tower.gd
 # ────────────────────────────────────────────
 
-## The opening cutscene when the game first starts
 func play_intro() -> void:
 	play_dialogue([
 		line("Dragon", "Why hello, brave Knight! Have you come to rescue the princess?"),
@@ -125,7 +133,6 @@ func play_intro() -> void:
 	])
 
 
-## Dragon hint after a retry. Pass in the single hint string from GameState.
 func play_retry_hints(hint: String, attempt: int) -> void:
 	var encouragement: String
 	match attempt:
@@ -143,7 +150,6 @@ func play_retry_hints(hint: String, attempt: int) -> void:
 	])
 
 
-## Win ending
 func play_win() -> void:
 	play_dialogue([
 		line("Princess", "Oh my... you actually remembered everything I like."),
@@ -154,7 +160,6 @@ func play_win() -> void:
 	])
 
 
-## Retry ending — princess pushes knight off
 func play_retry_ending() -> void:
 	play_dialogue([
 		line("Princess", "Hmm. You tried. Sort of."),
@@ -165,7 +170,6 @@ func play_retry_ending() -> void:
 	])
 
 
-## Game over — dragon eats the knight
 func play_game_over() -> void:
 	play_dialogue([
 		line("Princess", "...You brought me nothing? Nothing at all?"),
