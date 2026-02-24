@@ -6,7 +6,9 @@ Title: Worth the Climb (subject to change)
 Story:
 A Princess has been locked in a tower by a Dragon, and the King has offered her hand in marriage to anyone who can return her safely. The Dragon has discussed this with the princess and together, they agreed that if the suitor can make her fall in love with him, the Dragon won't eat the princess. The tone is supposed to be funny, here is some dialogue I wrote for that:
 
+```
 "<b>Dragon NPC</b><br/>'Why hello, brave Knight! Have you come to rescue the princess?<br/>I hear the King is offering her hand to anyone who can save her!<br/>Ha! Any fool can save the princess!<br/>Now, I've talked to the princess and we've devised... a plan.<br/>Yes. If you don't win her heart by the time you get up there, I'll eat you!<br/>I'll tell her you're on you're way!'"
+```
 Anyways, this dialogue is meant to be conveyed in a cutscene, and the text will appear in a block at the top of the screen with green text so they know it's the dragon speaking. The Knight (player character) will have grey text and the princess will have pink text. 
 
 Gameplay is a platformer that involves jumping up to the top of the tower and collecting items as gifts for the princess. Depending on how successful the Knight is, the princess can respond in one of three ways: (1) she will fall in love with the Knight and they will run away together - win; (2) she will push the knight off, saying he's not good enough, and he will have to try again with new level generation - fail; and (3) she will run into her tower and the dragon will eat the knight - game over.
