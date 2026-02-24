@@ -6,6 +6,21 @@ extends Node
 #  Name it exactly:  GameState
 # ──────────────────────────────────────────────
 
+# ── Timer (from sister's version) ──
+var start_time: float = 0.0
+var final_time: float = 0.0
+
+func start_timer() -> void:
+	start_time = Time.get_unix_time_from_system()
+
+func stop_timer() -> void:
+	final_time = Time.get_unix_time_from_system() - start_time
+
+func game_end_message() -> String:
+	if final_time == 0.0:
+		return "Something strange happened..."
+	return str(snapped(final_time, 0.01)) + "s"
+
 # Item categories (indices match ITEM_NAMES order)
 const ITEM_NAMES = ["Flower", "Weapon", "Book", "Chocolate", "Gem"]
 
@@ -23,23 +38,15 @@ const SCORE_LIKED     =  2
 const SCORE_NEUTRAL   =  0
 const SCORE_DISLIKED  = -1
 
-# Outcome thresholds
-# Win  : all 5 items chosen are the princess's liked variant
-# Retry: at least one liked item (score > 0)
-# Over : score <= 0
-
 # ── Persistent state (survives retries, resets on game over / new game) ──
 var princess_preferences: Dictionary = {}
-# e.g. { "Flower": { "liked": "Rose", "neutral": "Tulip", "disliked": "Daisy" } }
-
 var attempt_number: int = 0
-var revealed_hints: Array = []   # hints the dragon has already given
+var revealed_hints: Array = []
 
 # ── Per-attempt state (resets each climb) ──
 var current_score: int = 0
 var items_collected: Dictionary = {}
-# e.g. { "Flower": "Rose", "Book": "Fantasy" }
-var liked_count: int = 0   # how many of this attempt's picks were liked
+var liked_count: int = 0
 
 
 # ────────────────────────────────────────────
@@ -49,16 +56,13 @@ var liked_count: int = 0   # how many of this attempt's picks were liked
 func _ready() -> void:
 	new_game()
 
-
-## Call this to fully reset everything (new game or after game over)
 func new_game() -> void:
 	attempt_number = 0
 	revealed_hints = []
+	final_time = 0.0
 	_generate_preferences()
 	reset_attempt()
 
-
-## Generates a fresh random set of princess preferences
 func _generate_preferences() -> void:
 	princess_preferences.clear()
 	for category in ITEM_VARIANTS:
@@ -75,16 +79,12 @@ func _generate_preferences() -> void:
 #  Per-Attempt helpers
 # ────────────────────────────────────────────
 
-## Resets score and collected items for a new climb
 func reset_attempt() -> void:
 	attempt_number += 1
 	current_score = 0
 	items_collected.clear()
 	liked_count = 0
 
-
-## Called when the player picks a variant for a category.
-## Returns the preference level as a String: "liked" | "neutral" | "disliked"
 func register_item_choice(category: String, variant: String) -> String:
 	items_collected[category] = variant
 	var prefs = princess_preferences[category]
@@ -108,7 +108,6 @@ func register_item_choice(category: String, variant: String) -> String:
 
 enum Outcome { WIN, RETRY, GAME_OVER }
 
-## Evaluates the outcome based on the current attempt's score / liked count
 func evaluate_outcome() -> Outcome:
 	if liked_count == ITEM_NAMES.size():
 		return Outcome.WIN
@@ -122,15 +121,12 @@ func evaluate_outcome() -> Outcome:
 #  Hint generation
 # ────────────────────────────────────────────
 
-## Returns a single vague, poetic hint String for this attempt.
-## Cycles through all 5 categories before repeating.
 func get_hint_for_attempt() -> String:
 	var unrevealed = []
 	for cat in ITEM_NAMES:
 		if not (cat in revealed_hints):
 			unrevealed.append(cat)
 
-	# If we've cycled through all categories, start over
 	if unrevealed.is_empty():
 		unrevealed = ITEM_NAMES.duplicate()
 		revealed_hints.clear()
@@ -138,9 +134,7 @@ func get_hint_for_attempt() -> String:
 	unrevealed.shuffle()
 	var category = unrevealed[0]
 	revealed_hints.append(category)
-
 	return _make_vague_hint(category)
-
 
 func _make_vague_hint(category: String) -> String:
 	match category:

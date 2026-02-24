@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" uid="uid://ckrrekfaq6drn" path="res://scripts/tower.gd" id="1_ay4al"]
 [ext_resource type="PackedScene" uid="uid://xnlp11j8skng" path="res://scenes/Player.tscn" id="2_ktxwe"]
-[ext_resource type="Texture2D" uid="uid://de2pnf8km4i7n" path="res://assets/background_refrence.png" id="2_qrbg1"]
-[ext_resource type="Script" uid="uid://c8tf1tgdg7kki" path="res://scripts/item_menu.gd" id="4_85u2j"]
-[ext_resource type="Script" uid="uid://bmoperl3x7na4" path="res://scripts/cutscene.gd" id="5_xl0gn"]
-[ext_resource type="Script" uid="uid://flfy0wovsard" path="res://scripts/princess.gd" id="6_vqps3"]
+[ext_resource type="Texture2D" uid="uid://ckclvwqtprqpm" path="res://assets/background_refrence.png" id="2_qrbg1"]
+[ext_resource type="PackedScene" uid="uid://ixut5uch0c0w" path="res://menus/pause_menu.tscn" id="4_qrbg1"]
+[ext_resource type="PackedScene" uid="uid://bvs3nicr3sxv6" path="res://scenes/end_interface.tscn" id="5_jfguu"]
+[ext_resource type="Script" uid="uid://c8tf1tgdg7kki" path="res://scripts/item_menu.gd" id="6_menu"]
+[ext_resource type="Script" uid="uid://bmoperl3x7na4" path="res://scripts/cutscene.gd" id="7_cut"]
+[ext_resource type="Script" uid="uid://flfy0wovsard" path="res://scripts/princess.gd" id="8_pri"]
 
 [node name="Tower" type="Node2D" unique_id=1034955630]
 script = ExtResource("1_ay4al")
@@ -20,8 +22,34 @@ texture = ExtResource("2_qrbg1")
 
 [node name="Knight" parent="." unique_id=1334906514 instance=ExtResource("2_ktxwe")]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=308829385]
+
+[node name="PauseMenu" parent="CanvasLayer" unique_id=573906062 instance=ExtResource("4_qrbg1")]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=375279745]
+z_index = 1000
+offset_left = 416.0
+offset_top = 32.0
+offset_right = 480.0
+offset_bottom = 96.0
+rotation = -1.5707964
+scale = Vector2(29, 5)
+color = Color(1, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1735572012]
+z_index = 1000
+offset_left = -30.0
+offset_top = -1904.0
+offset_right = 20.0
+offset_bottom = -1824.0
+color = Color(0.5606185, 0.4613108, 0.82337165, 1)
+
+[node name="End_Interface" parent="." unique_id=1474081801 instance=ExtResource("5_jfguu")]
+position = Vector2(470, -2004)
+
 [node name="ItemMenu" type="CanvasLayer" parent="." unique_id=1001677326]
-script = ExtResource("4_85u2j")
+script = ExtResource("6_menu")
 
 [node name="Panel" type="Panel" parent="ItemMenu" unique_id=693836690]
 visible = false
@@ -49,7 +77,7 @@ offset_right = 8.0
 offset_bottom = 8.0
 
 [node name="Cutscene" type="CanvasLayer" parent="." unique_id=1626482779]
-script = ExtResource("5_xl0gn")
+script = ExtResource("7_cut")
 
 [node name="Panel" type="Panel" parent="Cutscene" unique_id=701770755]
 visible = false
@@ -67,4 +95,4 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="Princess" type="Area2D" parent="." unique_id=45817184]
-script = ExtResource("6_vqps3")
+script = ExtResource("8_pri")

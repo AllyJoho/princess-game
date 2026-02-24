@@ -1,11 +1,7 @@
 extends Node2D
 
 # ──────────────────────────────────────────────
-#  tower.gd  (updated)
-#  Changes from original:
-#   - Spawns an Item node on each gift platform
-#   - Plays the intro cutscene on first attempt
-#   - Connects item signals to ItemMenu
+#  tower.gd  (merged)
 # ──────────────────────────────────────────────
 
 var rng: RandomNumberGenerator
@@ -13,13 +9,13 @@ var rng: RandomNumberGenerator
 # Objects
 var block    = preload("res://scenes/block.tscn")
 var platform = preload("res://scenes/platform.tscn")
-var item_scene = preload("res://scenes/item.tscn")   # NEW
+var gift     = preload("res://scenes/gift.tscn")   # using sister's gift.tscn
 
 # Textures
-var grass_texture        = preload("res://assets/tiles/grass.png")
-var dirt_texture         = preload("res://assets/tiles/dirt.png")
-var wall_texture         = preload("res://assets/tiles/wall.png")
-var platform_texture     = preload("res://assets/tiles/platform.png")
+var grass_texture         = preload("res://assets/tiles/grass.png")
+var dirt_texture          = preload("res://assets/tiles/dirt.png")
+var wall_texture          = preload("res://assets/tiles/wall.png")
+var platform_texture      = preload("res://assets/tiles/platform.png")
 var gift_platform_texture = preload("res://assets/tiles/gift_platform.png")
 
 # Important Numbers
@@ -28,10 +24,10 @@ var gift_platform_texture = preload("res://assets/tiles/gift_platform.png")
 @export var block_size     = 64.0
 @export var platform_size  = 112.0
 @export var platform_chance = 0.2
-var wall_pos         = 0.0
-var total_platforms  = 0
+var wall_pos        = 0.0
+var total_platforms = 0
 
-# Node references (set in _ready)
+# Node references
 @onready var item_menu: CanvasLayer = $ItemMenu
 @onready var cutscene:  CanvasLayer = $Cutscene
 
@@ -41,18 +37,15 @@ func _ready() -> void:
 	wall_pos        = (level_width * block_size) / 2
 	total_platforms = floors
 
+	GameState.start_timer()
 	build_walls()
 	build_tower()
 
 	# Play intro only on the very first attempt
-	if GameState.attempt_number <= 1:
-		#cutscene.play_intro()
-		#await cutscene.dialogue_finished
-		pass
-	else:
-		# Give dragon hints for subsequent attempts (already handled by princess.gd
-		# before scene reload, so nothing extra needed here)
-		pass
+	# (commented out until cutscene UI is positioned)
+	#if GameState.attempt_number <= 1:
+	#	cutscene.play_intro()
+	#	await cutscene.dialogue_finished
 
 
 func spawn_object(x, y, object, texture = null):
@@ -61,7 +54,7 @@ func spawn_object(x, y, object, texture = null):
 	if texture != null:
 		p.get_node("Sprite2D").texture = texture
 	add_child(p)
-	return p   # return so callers can further configure the node
+	return p
 
 
 func get_unique_random_numbers(min_val: int, max_val: int, count: int) -> Array:
@@ -75,19 +68,15 @@ func get_unique_random_numbers(min_val: int, max_val: int, count: int) -> Array:
 func build_platform(y_pos, gift_category: String) -> void:
 	var x_pos = randf_range(-wall_pos + platform_size, wall_pos - platform_size)
 	var tex   = gift_platform_texture if gift_category != "" else platform_texture
-	var p     = spawn_object(x_pos, y_pos, platform, tex)
+	spawn_object(x_pos, y_pos, platform, tex)
 
 	if gift_category != "":
-		_spawn_item_on_platform(p, x_pos, y_pos, gift_category)
-
-
-func _spawn_item_on_platform(platform_node, x_pos: float, y_pos: float, category: String) -> void:
-	var it = item_scene.instantiate()
-	it.category = category
-	# Place item slightly above the platform surface
-	it.position = Vector2(x_pos, y_pos - 48)
-	it.item_touched.connect(item_menu.open_for_item)
-	add_child(it)
+		var gift_obj = gift.instantiate()
+		gift_obj.position = Vector2(x_pos, y_pos - block_size)
+		gift_obj.category = gift_category
+		# Connect to item menu when UI is ready
+		# gift_obj.item_touched.connect(item_menu.open_for_item)
+		add_child(gift_obj)
 
 
 func build_walls() -> void:
@@ -106,9 +95,7 @@ func build_walls() -> void:
 
 func build_tower() -> void:
 	var y_pos = -block_size * 2
-	# Pick 5 random platform indices, one per item category
 	var gift_indices = get_unique_random_numbers(0, total_platforms - 1, 5)
-	# Assign each gift index a unique item category
 	var categories   = GameState.ITEM_NAMES.duplicate()
 	categories.shuffle()
 
