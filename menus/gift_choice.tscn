@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://b0llo74ban0ur"]
+
+[node name="Gift_Choice" type="Control" unique_id=40387386]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionBox" type="PanelContainer" parent="." unique_id=1358979236]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = -270.0
+offset_right = 270.0
+offset_bottom = 270.0
+
+[node name="Options" type="VBoxContainer" parent="OptionBox" unique_id=43167696]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+
+[node name="Message" type="Label" parent="OptionBox/Options" unique_id=493087938]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "What type of ____gift___ do you want to get the princess?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="option1" type="Button" parent="OptionBox/Options" unique_id=1194235295]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Option1"
+
+[node name="option2" type="Button" parent="OptionBox/Options" unique_id=449664826]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Option2"
+
+[node name="option3" type="Button" parent="OptionBox/Options" unique_id=1852155109]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Option3"

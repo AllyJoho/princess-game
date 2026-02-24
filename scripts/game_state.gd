@@ -6,7 +6,7 @@ extends Node
 #  Name it exactly:  GameState
 # ──────────────────────────────────────────────
 
-# ── Timer (from sister's version) ──
+# ── Timer ──
 var start_time: float = 0.0
 var final_time: float = 0.0
 

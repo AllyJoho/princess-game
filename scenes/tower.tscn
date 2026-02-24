@@ -28,6 +28,7 @@ texture = ExtResource("2_qrbg1")
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=375279745]
+visible = false
 z_index = 1000
 offset_left = 416.0
 offset_top = 32.0
@@ -38,6 +39,7 @@ scale = Vector2(29, 5)
 color = Color(1, 0, 0, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="." unique_id=1735572012]
+visible = false
 z_index = 1000
 offset_left = -30.0
 offset_top = -1904.0
@@ -46,7 +48,7 @@ offset_bottom = -1824.0
 color = Color(0.5606185, 0.4613108, 0.82337165, 1)
 
 [node name="End_Interface" parent="." unique_id=1474081801 instance=ExtResource("5_jfguu")]
-position = Vector2(470, -2004)
+position = Vector2(470, -2002)
 
 [node name="ItemMenu" type="CanvasLayer" parent="." unique_id=1001677326]
 script = ExtResource("6_menu")
