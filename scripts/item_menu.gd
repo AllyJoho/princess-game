@@ -48,8 +48,9 @@ func open_for_item(item_node: Area2D) -> void:
 	for i in range(buttons.size()):
 		buttons[i].text = variants[i]
 
-	panel.visible = true
-	get_tree().paused = true   # Freeze game while menu is open
+	# panel.visible = true   # uncomment when UI is ready
+	# get_tree().paused = true
+	_on_variant_chosen(0)   # auto-pick first option for testing
 
 
 func _on_variant_chosen(button_index: int) -> void:

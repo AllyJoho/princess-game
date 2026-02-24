@@ -46,8 +46,9 @@ func _ready() -> void:
 
 	# Play intro only on the very first attempt
 	if GameState.attempt_number <= 1:
-		cutscene.play_intro()
-		await cutscene.dialogue_finished
+		#cutscene.play_intro()
+		#await cutscene.dialogue_finished
+		pass
 	else:
 		# Give dragon hints for subsequent attempts (already handled by princess.gd
 		# before scene reload, so nothing extra needed here)
