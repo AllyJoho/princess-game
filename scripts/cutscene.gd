@@ -25,21 +25,19 @@ var _waiting_for_input: bool = false
 
 func _ready() -> void:
 	panel.visible = false
+	set_process_unhandled_input(true)
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not _waiting_for_input:
 		return
-
-	# NOTE: Do NOT filter by InputEventKey here — is_action_just_pressed
-	# only exists on the base InputEvent type, not on subtypes.
 	var should_advance = false
 
-	if event.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump"):
 		should_advance = true
-	elif event.is_action_just_pressed("ui_accept"):
+	elif Input.is_action_just_pressed("ui_accept"):
 		should_advance = true
-	elif event.is_action_just_pressed("ui_select"):
+	elif Input.is_action_just_pressed("ui_select"):
 		should_advance = true
 
 	if should_advance:

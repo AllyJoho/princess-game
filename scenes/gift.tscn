@@ -6,6 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gn6ih"]
 
 [node name="Gift" type="Area2D" unique_id=1180395571]
+process_mode = 3
 script = ExtResource("1_olhi4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2113706549]
@@ -18,7 +19,7 @@ shape = SubResource("RectangleShape2D_gn6ih")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=201154133]
 
 [node name="OptionBox" type="PanelContainer" parent="CanvasLayer" unique_id=297185207]
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

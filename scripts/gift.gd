@@ -48,12 +48,15 @@ func enter_option(variant: String):
 
 
 func _on_option_1_pressed() -> void:
+	print("option1")
 	enter_option($CanvasLayer/OptionBox/Options/option1.text)
 
 
 func _on_option_2_pressed() -> void:
+	print("option1")
 	enter_option($CanvasLayer/OptionBox/Options/option2.text)
 
 
 func _on_option_3_pressed() -> void:
+	print("option1")
 	enter_option($CanvasLayer/OptionBox/Options/option3.text)
