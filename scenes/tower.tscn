@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://cnjbqncnueq6m"]
 
-[ext_resource type="Script" uid="uid://deqn1v1sh7tmf" path="res://scripts/tower.gd" id="1_ay4al"]
+[ext_resource type="Script" uid="uid://ckrrekfaq6drn" path="res://scripts/tower.gd" id="1_ay4al"]
 [ext_resource type="PackedScene" uid="uid://xnlp11j8skng" path="res://scenes/Player.tscn" id="2_ktxwe"]
 [ext_resource type="Texture2D" uid="uid://ckclvwqtprqpm" path="res://assets/background_refrence.png" id="2_qrbg1"]
 [ext_resource type="PackedScene" uid="uid://ixut5uch0c0w" path="res://menus/pause_menu.tscn" id="4_qrbg1"]
 [ext_resource type="PackedScene" uid="uid://bvs3nicr3sxv6" path="res://scenes/end_interface.tscn" id="5_jfguu"]
+[ext_resource type="Script" uid="uid://c8tf1tgdg7kki" path="res://scripts/item_menu.gd" id="6_menu"]
+[ext_resource type="Script" uid="uid://bmoperl3x7na4" path="res://scripts/cutscene.gd" id="7_cut"]
+[ext_resource type="Script" uid="uid://flfy0wovsard" path="res://scripts/princess.gd" id="8_pri"]
 
 [node name="Tower" type="Node2D" unique_id=1034955630]
 script = ExtResource("1_ay4al")
@@ -46,3 +49,52 @@ color = Color(0.5606185, 0.4613108, 0.82337165, 1)
 
 [node name="End_Interface" parent="." unique_id=1474081801 instance=ExtResource("5_jfguu")]
 position = Vector2(470, -2002)
+
+[node name="ItemMenu" type="CanvasLayer" parent="." unique_id=1001677326]
+script = ExtResource("6_menu")
+
+[node name="Panel" type="Panel" parent="ItemMenu" unique_id=693836690]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TitleLabel" type="Label" parent="ItemMenu/Panel" unique_id=1708804887]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Button0" type="Button" parent="ItemMenu/Panel" unique_id=1040034924]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Button1" type="Button" parent="ItemMenu/Panel" unique_id=384087296]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Button2" type="Button" parent="ItemMenu/Panel" unique_id=1710635985]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Cutscene" type="CanvasLayer" parent="." unique_id=1626482779]
+script = ExtResource("7_cut")
+
+[node name="Panel" type="Panel" parent="Cutscene" unique_id=701770755]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DialogueLabel" type="RichTextLabel" parent="Cutscene/Panel" unique_id=51756059]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ContinueLabel" type="Label" parent="Cutscene/Panel" unique_id=1202193931]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Princess" type="Area2D" parent="." unique_id=45817184]
+script = ExtResource("8_pri")
