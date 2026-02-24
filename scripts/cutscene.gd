@@ -2,25 +2,19 @@ extends CanvasLayer
 
 # ──────────────────────────────────────────────
 #  cutscene.gd
-#  Attach to a CanvasLayer node called Cutscene.
-#  Scene structure expected:
-#
 #  Cutscene (CanvasLayer)
 #  └── Panel
-#      ├── DialogueLabel   (RichTextLabel)  - displays the current line
-#      └── ContinueLabel   (Label)          - "Press Space to continue" prompt
-#
-#  Panel starts hidden.
+#      ├── DialogueLabel   (RichTextLabel)
+#      └── ContinueLabel   (Label)
 # ──────────────────────────────────────────────
 
 @onready var panel:           Control        = $Panel
 @onready var dialogue_label:  RichTextLabel  = $Panel/DialogueLabel
 @onready var continue_label:  Label          = $Panel/ContinueLabel
 
-# Speaker colour codes
-const COLOR_DRAGON   = "#00cc44"   # green
-const COLOR_PRINCESS = "#ff88bb"   # pink
-const COLOR_KNIGHT   = "#aaaaaa"   # grey
+const COLOR_DRAGON   = "#00cc44"
+const COLOR_PRINCESS = "#ff88bb"
+const COLOR_KNIGHT   = "#aaaaaa"
 
 signal dialogue_finished
 
@@ -36,27 +30,20 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not _waiting_for_input:
 		return
-	if not (event is InputEventKey or event is InputEventJoypadButton):
-		return
 
+	# NOTE: Do NOT filter by InputEventKey here — is_action_just_pressed
+	# only exists on the base InputEvent type, not on subtypes.
 	var should_advance = false
 
-	# Check all mapped actions that should advance dialogue
 	if event.is_action_just_pressed("jump"):
 		should_advance = true
 	elif event.is_action_just_pressed("ui_accept"):
 		should_advance = true
 	elif event.is_action_just_pressed("ui_select"):
 		should_advance = true
-	# Direct key fallback — catches Space even if action mapping is consumed
-	elif event is InputEventKey and event.pressed and not event.echo:
-		if event.physical_keycode == KEY_SPACE \
-		or event.physical_keycode == KEY_ENTER \
-		or event.physical_keycode == KEY_KP_ENTER:
-			should_advance = true
 
 	if should_advance:
-		get_viewport().set_input_as_handled()  # prevent input leaking to player
+		get_viewport().set_input_as_handled()
 		_advance()
 
 
@@ -85,7 +72,7 @@ func _show_line(index: int) -> void:
 		_finish()
 		return
 
-	var entry    = _lines[index]
+	var entry           = _lines[index]
 	var speaker: String = entry["speaker"]
 	var text: String    = entry["text"]
 	var color: String   = _color_for_speaker(speaker)
