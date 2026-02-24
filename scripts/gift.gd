@@ -38,8 +38,6 @@ func enter_option(variant: String):
 	var category = GameState.ITEM_NAMES[index]
 	var preference_level = GameState.register_item_choice(category, variant)  # fixed: was player_choices
 
-	# Brief feedback — change button text before closing
-	# (the buttons still show the variant name, so this is a nice touch)
 	print("Gave princess a ", variant, " (", category, ") — she ", preference_level, " it.")
 
 	$CanvasLayer/OptionBox.visible = false

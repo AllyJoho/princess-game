@@ -109,6 +109,7 @@ func register_item_choice(category: String, variant: String) -> String:
 enum Outcome { WIN, RETRY, GAME_OVER }
 
 func evaluate_outcome() -> Outcome:
+	
 	if liked_count == ITEM_NAMES.size():
 		return Outcome.WIN
 	elif current_score > 0:
