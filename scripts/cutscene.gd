@@ -28,7 +28,7 @@ func _ready() -> void:
 	set_process_unhandled_input(true)
 
 
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(_event: InputEvent) -> void:
 	if not _waiting_for_input:
 		return
 	var should_advance = false

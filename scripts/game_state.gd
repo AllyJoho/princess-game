@@ -1,10 +1,7 @@
 extends Node
 
-# ──────────────────────────────────────────────
-#  GameState  (Autoload Singleton)
-# ──────────────────────────────────────────────
+var pause_enabled: bool = false
 
-# ── Timer ──
 var start_time: float = 0.0
 var final_time: float = 0.0
 

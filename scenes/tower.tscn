@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ckrrekfaq6drn" path="res://scripts/tower.gd" id="1_ay4al"]
 [ext_resource type="PackedScene" uid="uid://xnlp11j8skng" path="res://scenes/Player.tscn" id="2_ktxwe"]
-[ext_resource type="Texture2D" uid="uid://ckclvwqtprqpm" path="res://assets/background_refrence.png" id="2_qrbg1"]
+[ext_resource type="Texture2D" uid="uid://de2pnf8km4i7n" path="res://assets/background_refrence.png" id="2_qrbg1"]
 [ext_resource type="PackedScene" uid="uid://ixut5uch0c0w" path="res://menus/pause_menu.tscn" id="4_qrbg1"]
 [ext_resource type="PackedScene" uid="uid://bvs3nicr3sxv6" path="res://scenes/end_interface.tscn" id="5_jfguu"]
 [ext_resource type="PackedScene" uid="uid://cuxcut0scn001" path="res://scenes/cutscene.tscn" id="7_cut"]
@@ -20,6 +20,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_qrbg1")
 
 [node name="Knight" parent="." unique_id=1334906514 instance=ExtResource("2_ktxwe")]
+position = Vector2(0, 32)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=308829385]
 

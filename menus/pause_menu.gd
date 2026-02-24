@@ -9,8 +9,9 @@ func resume():
 	hide()
 
 func pause():
-	get_tree().paused = true
-	show()
+	if GameState.pause_enabled:
+		get_tree().paused = true
+		show()
 
 func testEsc():
 	if Input.is_action_just_pressed("pause") and get_tree().paused == false:
@@ -36,5 +37,5 @@ func _on_main_menu_pressed() -> void:
 func _on_quit_pressed() -> void:
 	get_tree().quit() 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	testEsc() 
