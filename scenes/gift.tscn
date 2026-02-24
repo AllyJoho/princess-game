@@ -15,4 +15,51 @@ texture = ExtResource("1_gn6ih")
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_gn6ih")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=201154133]
+
+[node name="OptionBox" type="PanelContainer" parent="CanvasLayer" unique_id=297185207]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = -270.0
+offset_right = 270.0
+offset_bottom = 270.0
+
+[node name="Options" type="VBoxContainer" parent="CanvasLayer/OptionBox" unique_id=1720083376]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+
+[node name="Message" type="Label" parent="CanvasLayer/OptionBox/Options" unique_id=224131143]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "What type of ____gift___ do you want to get the princess?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="option1" type="Button" parent="CanvasLayer/OptionBox/Options" unique_id=1826680257]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Option1"
+
+[node name="option2" type="Button" parent="CanvasLayer/OptionBox/Options" unique_id=1531223355]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Option2"
+
+[node name="option3" type="Button" parent="CanvasLayer/OptionBox/Options" unique_id=1421817455]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Option3"
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="pressed" from="CanvasLayer/OptionBox/Options/option1" to="." method="_on_option_1_pressed"]
+[connection signal="pressed" from="CanvasLayer/OptionBox/Options/option2" to="." method="_on_option_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/OptionBox/Options/option3" to="." method="_on_option_3_pressed"]
