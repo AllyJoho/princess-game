@@ -9,10 +9,21 @@ extends Area2D
 #   - Game unpaused after choice
 # ──────────────────────────────────────────────
 
+const ITEM_TEXTURES = {
+	"Flower":    preload("res://assets/sprites/items/flower.png"),
+	"Weapon":    preload("res://assets/sprites/items/weapon.png"),
+	"Book":      preload("res://assets/sprites/items/book.png"),
+	"Chocolate": preload("res://assets/sprites/items/chocolate.png"),
+	"Gem":       preload("res://assets/sprites/items/gem.png"),
+}
+
 var index: int = -1
 
 func _ready():
 	$CanvasLayer/OptionBox.visible = false
+	var category = GameState.ITEM_NAMES[index]
+	if category in ITEM_TEXTURES:
+		$Sprite2D.texture = ITEM_TEXTURES[category]
 
 
 func _on_body_entered(body: Node2D) -> void:

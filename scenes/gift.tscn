@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://wgm46b4sh2gx"]
 
-[ext_resource type="Texture2D" uid="uid://bu05gtiklwm3k" path="res://assets/sprites/items/red_gem.png" id="1_gn6ih"]
 [ext_resource type="Script" uid="uid://1nybjbxqv2pu" path="res://scripts/gift.gd" id="1_olhi4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gn6ih"]
@@ -10,7 +9,6 @@ process_mode = 3
 script = ExtResource("1_olhi4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2113706549]
-texture = ExtResource("1_gn6ih")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1980388805]
 scale = Vector2(1.5, 1.5)

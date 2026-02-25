@@ -38,6 +38,10 @@ func _play_anim(anim_name: String) -> void:
 
 
 func _evaluate() -> void:
+	var balcony = get_tree().get_first_node_in_group("balcony_princess")
+	if balcony:
+		balcony.run_in()
+
 	var outcome = GameState.evaluate_outcome()
 	match outcome:
 		GameState.Outcome.WIN:
