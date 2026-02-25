@@ -136,6 +136,8 @@ func play_intro() -> void:
 
 
 func play_retry_hints(hint: String, attempt: int) -> void:
+	_dragon_slide_in()
+	dialogue_finished.connect(_dragon_slide_out, CONNECT_ONE_SHOT)
 	var encouragement: String
 	match attempt:
 		2: encouragement = "She must like you a little, or I'd have had a snack already."
@@ -154,27 +156,28 @@ func play_retry_hints(hint: String, attempt: int) -> void:
 
 func play_win() -> void:
 	play_dialogue([
-		line("Princess", "Oh my... you actually remembered everything I like."),
-		line("Princess", "I... I think I might be falling for you."),
+		line("Princess", "You... you actually paid attention."),
+		line("Princess", "You brought everything I love. How did you even know?"),
+		line("Knight", "I listened. And I tried again."),
+		line("Princess", "I think I might be falling for you."),
 		line("Knight", "Then let's go. Together."),
 		line("Dragon", "...I'm not crying. There's smoke in my eyes."),
 		line("Dragon", "Go on then. You've earned it."),
 	])
 
 
-func play_retry_ending() -> void:
-	play_dialogue([
-		line("Princess", "Hmm. You tried. Sort of."),
-		line("Princess", "I'm not impressed enough to marry you, but... you're not terrible."),
+func play_retry_ending(extra_lines: Array = []) -> void:
+	var all_lines = extra_lines.duplicate()
+	all_lines.append_array([
 		line("Princess", "Come back when you actually know me."),
-		line("Knight", "I — wait —"),
 		line("Dragon", "She pushed him off. Classic. I'll go retrieve him."),
 	])
+	play_dialogue(all_lines)
 
 
 func play_game_over() -> void:
 	play_dialogue([
-		line("Princess", "...You brought me nothing? Nothing at all?"),
+		line("Princess", "...You brought me nothing?"),
 		line("Princess", "I'm going back inside."),
 		line("Dragon", "Well. A deal's a deal."),
 		line("Dragon", "Don't worry. I'm sure you were very brave."),

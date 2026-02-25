@@ -108,13 +108,12 @@ func register_item_choice(category: String, variant: String) -> String:
 enum Outcome { WIN, RETRY, GAME_OVER }
 
 func evaluate_outcome() -> Outcome:
-	
 	if liked_count == ITEM_NAMES.size():
 		return Outcome.WIN
-	elif current_score > 0:
-		return Outcome.RETRY
-	else:
+	elif items_collected.size() == 0 or liked_count == 0 and current_score < 0:
 		return Outcome.GAME_OVER
+	else:
+		return Outcome.RETRY
 
 
 # ────────────────────────────────────────────
@@ -149,6 +148,67 @@ func get_hint_for_attempt() -> String:
 	if pending_hint != "":
 		return consume_pending_hint()
 	return _pick_hint()
+
+func generate_retry_dialogue() -> Array:
+	var liked_lines  : Array = []
+	var other_lines  : Array = []
+	var any_liked    : bool  = false
+
+	for category in ITEM_NAMES:
+		if not items_collected.has(category):
+			continue
+		var variant : String = items_collected[category]
+		var prefs            = princess_preferences[category]
+		if variant == prefs["liked"]:
+			any_liked = true
+			var text: String
+			match category:
+				"Flower":    text = "A %s! You actually brought me a %s. I noticed." % [variant, variant]
+				"Weapon":    text = "You chose a %s. That's... actually exactly right." % variant
+				"Book":      text = "A %s book. How did you know that's what I wanted?" % variant
+				"Chocolate": text = "%s chocolate. My favourite. Don't tell anyone." % variant
+				"Gem":       text = "A %s. I may have cried. Just a little." % variant
+				_:           text = "The %s — yes. That one I liked." % variant
+			liked_lines.append({"speaker": "Princess", "text": text})
+		elif variant == prefs["disliked"]:
+			var text: String
+			match category:
+				"Flower":    text = "I don't even want to talk about the flower."
+				"Weapon":    text = "That... weapon choice. Let's not discuss it."
+				"Book":      text = "The book was not to my taste. At all."
+				"Chocolate": text = "I'm not saying anything about the chocolate."
+				"Gem":       text = "The gem was... a choice."
+				_:           text = "The %s. No." % category
+			other_lines.append({"speaker": "Princess", "text": text})
+		else:
+			var text: String
+			match category:
+				"Flower":    text = "The flower was fine. Just fine."
+				"Weapon":    text = "The weapon was acceptable, I suppose."
+				"Book":      text = "The book was fine. Just fine."
+				"Chocolate": text = "The chocolate was... adequate."
+				"Gem":       text = "The gem was okay."
+				_:           text = "The %s was fine." % category
+			other_lines.append({"speaker": "Princess", "text": text})
+
+	# Build result: liked first, then others, capped at 3 lines
+	var result: Array = []
+	for l in liked_lines:
+		if result.size() < 3:
+			result.append(l)
+	for l in other_lines:
+		if result.size() < 3:
+			result.append(l)
+
+	var dragon_line: String
+	if any_liked:
+		dragon_line = "She didn't eat you. Progress."
+	else:
+		dragon_line = "Well. At least you tried. Mostly."
+	result.append({"speaker": "Dragon", "text": dragon_line})
+
+	return result
+
 
 func _make_vague_hint(category: String) -> String:
 	var liked: String = princess_preferences[category]["liked"]
