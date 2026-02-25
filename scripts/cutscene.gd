@@ -12,6 +12,9 @@ extends CanvasLayer
 @onready var dialogue_label:  RichTextLabel  = $Panel/DialogueLabel
 @onready var continue_label:  Label          = $Panel/ContinueLabel
 
+@export var dragon_path: NodePath = ""
+@onready var _dragon: Node = get_node_or_null(dragon_path)
+
 const COLOR_DRAGON   = "#00cc44"
 const COLOR_PRINCESS = "#ff88bb"
 const COLOR_KNIGHT   = "#aaaaaa"
@@ -26,6 +29,8 @@ var _waiting_for_input: bool = false
 func _ready() -> void:
 	panel.visible = false
 	set_process_unhandled_input(true)
+	if _dragon:
+		_dragon.visible = false
 
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -107,7 +112,19 @@ func _color_for_speaker(speaker: String) -> String:
 #  Pre-written dialogue sequences
 # ────────────────────────────────────────────
 
+func _dragon_slide_in() -> void:
+	if _dragon:
+		_dragon.visible = true
+
+
+func _dragon_slide_out() -> void:
+	if _dragon:
+		_dragon.visible = false
+
+
 func play_intro() -> void:
+	_dragon_slide_in()
+	dialogue_finished.connect(_dragon_slide_out, CONNECT_ONE_SHOT)
 	play_dialogue([
 		line("Dragon", "Why hello, brave Knight! Have you come to rescue the princess?"),
 		line("Dragon", "I hear the King is offering her hand to anyone who can save her!"),

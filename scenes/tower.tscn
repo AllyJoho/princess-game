@@ -2,11 +2,13 @@
 
 [ext_resource type="Script" uid="uid://ckrrekfaq6drn" path="res://scripts/tower.gd" id="1_ay4al"]
 [ext_resource type="PackedScene" uid="uid://xnlp11j8skng" path="res://scenes/Player.tscn" id="2_ktxwe"]
-[ext_resource type="Texture2D" uid="uid://de2pnf8km4i7n" path="res://assets/background_refrence.png" id="2_qrbg1"]
+[ext_resource type="Texture2D" uid="uid://dv7s0usj6tupv" path="res://assets/background.png" id="2_qrbg1"]
 [ext_resource type="PackedScene" uid="uid://ixut5uch0c0w" path="res://menus/pause_menu.tscn" id="4_qrbg1"]
 [ext_resource type="PackedScene" uid="uid://bvs3nicr3sxv6" path="res://scenes/end_interface.tscn" id="5_jfguu"]
 [ext_resource type="PackedScene" uid="uid://cuxcut0scn001" path="res://scenes/cutscene.tscn" id="7_cut"]
 [ext_resource type="Script" uid="uid://dxiq5bxq4cd0j" path="res://scripts/princess.gd" id="8_pri"]
+[ext_resource type="PackedScene" path="res://scenes/dragon.tscn" id="9_drag"]
+[ext_resource type="PackedScene" path="res://scenes/balcony_princess.tscn" id="10_balc"]
 
 [node name="Tower" type="Node2D" unique_id=1034955630]
 script = ExtResource("1_ay4al")
@@ -31,6 +33,13 @@ visible = false
 position = Vector2(470, -2002)
 
 [node name="Cutscene" parent="." unique_id=1626482779 instance=ExtResource("7_cut")]
+dragon_path = NodePath("../DragonLayer/Dragon")
 
 [node name="Princess" type="Area2D" parent="." unique_id=45817184]
 script = ExtResource("8_pri")
+
+[node name="DragonLayer" type="CanvasLayer" parent="." unique_id=112233445]
+
+[node name="Dragon" parent="DragonLayer" unique_id=556677889 instance=ExtResource("9_drag")]
+
+[node name="BalconyPrincess" parent="." unique_id=998877665 instance=ExtResource("10_balc")]

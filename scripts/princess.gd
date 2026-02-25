@@ -53,6 +53,10 @@ func _evaluate() -> void:
 # ────────────────────────────────────────────
 
 func _do_win() -> void:
+	var balcony = get_tree().get_first_node_in_group("balcony_princess")
+	if balcony:
+		balcony.run_in()
+	await get_tree().create_timer(0.8).timeout
 	_play_anim("love")
 	_cutscene.play_win()
 	await _cutscene.dialogue_finished
@@ -60,8 +64,11 @@ func _do_win() -> void:
 
 
 func _do_retry() -> void:
+	var balcony = get_tree().get_first_node_in_group("balcony_princess")
+	if balcony:
+		balcony.run_in()
+	await get_tree().create_timer(0.8).timeout
 	_play_anim("idle")  # swap "idle" for "push" once that animation exists in the sprite sheet
-
 	_cutscene.play_retry_ending()
 	await _cutscene.dialogue_finished
 
@@ -73,6 +80,10 @@ func _do_retry() -> void:
 
 
 func _do_game_over() -> void:
+	var balcony = get_tree().get_first_node_in_group("balcony_princess")
+	if balcony:
+		balcony.run_in()
+	await get_tree().create_timer(0.8).timeout
 	_cutscene.play_game_over()
 	await _cutscene.dialogue_finished
 	GameState.new_game()

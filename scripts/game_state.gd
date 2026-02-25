@@ -35,6 +35,7 @@ const SCORE_DISLIKED  = -1
 var princess_preferences: Dictionary = {}
 var attempt_number: int = 0
 var revealed_hints: Array = []
+var intro_played: bool = false
 
 # ── Per-attempt state ──
 var current_score: int = 0
@@ -57,6 +58,7 @@ func new_game() -> void:
 	revealed_hints = []
 	final_time     = 0.0
 	pending_hint   = ""
+	intro_played   = false
 	_generate_preferences()
 	reset_attempt()
 
@@ -149,16 +151,17 @@ func get_hint_for_attempt() -> String:
 	return _pick_hint()
 
 func _make_vague_hint(category: String) -> String:
+	var liked: String = princess_preferences[category]["liked"]
 	match category:
 		"Flower":
-			return "She once told me her garden speaks to her soul... not every bloom deserves her windowsill."
+			return "She once told me her garden speaks to her soul... I believe she prefers %s." % liked
 		"Weapon":
-			return "The princess has... particular tastes in danger. Choose wisely, brave knight."
+			return "The princess has particular tastes in danger... something about a %s." % liked
 		"Book":
-			return "I've seen her reading by candlelight. She's very selective about her stories."
+			return "I've seen her reading by candlelight. Always reaching for %s stories." % liked
 		"Chocolate":
-			return "She has strong opinions about sweets. Strong enough to mention to a dragon, if you can imagine."
+			return "She has strong opinions about sweets... specifically %s chocolate." % liked
 		"Gem":
-			return "She once cried over a gemstone. I won't say which one. Or why."
+			return "She once cried over a gemstone. A %s, if I recall." % liked
 		_:
-			return "She mentioned something about %s once. I wasn't really listening." % category
+			return "She mentioned something about %s once. A %s, specifically." % [category, liked]

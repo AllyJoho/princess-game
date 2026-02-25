@@ -44,8 +44,9 @@ func _ready() -> void:
 	build_walls()
 	build_tower()
 
-	# Play intro on first attempt, retry hints on subsequent attempts
-	if GameState.attempt_number <= 1:
+	# Play intro once per game, retry hints on all subsequent attempts
+	if not GameState.intro_played:
+		GameState.intro_played = true
 		cutscene.play_intro()
 	else:
 		var hint = GameState.get_hint_for_attempt()
