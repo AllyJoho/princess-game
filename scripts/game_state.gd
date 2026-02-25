@@ -151,7 +151,8 @@ func get_hint_for_attempt() -> String:
 
 func generate_retry_dialogue() -> Array:
 	var liked_lines  : Array = []
-	var other_lines  : Array = []
+	var fine_lines  : Array = []
+	var hated_lines  : Array = []
 	var any_liked    : bool  = false
 
 	for category in ITEM_NAMES:
@@ -163,11 +164,11 @@ func generate_retry_dialogue() -> Array:
 			any_liked = true
 			var text: String
 			match category:
-				"Flower":    text = "A %s! You actually brought me a %s. I noticed." % [variant, variant]
-				"Weapon":    text = "You chose a %s. That's... actually exactly right." % variant
-				"Book":      text = "A %s book. How did you know that's what I wanted?" % variant
-				"Chocolate": text = "%s chocolate. My favourite. Don't tell anyone." % variant
-				"Gem":       text = "A %s. I may have cried. Just a little." % variant
+				"Flower":    text = "A %s! You actually brought me a %s. They're my favorite. I have some in my garden you know." % [variant, variant]
+				"Weapon":    text = "You chose a %s. There's something about it... you know I trained to use this right? Watch out :/)" % variant
+				"Book":      text = "A %s book. I love that genere. It's sort of like my life... if you think about it." % variant
+				"Chocolate": text = "%s chocolate. My favourite. I sneak it from the kitchen sometimes you know?" % variant
+				"Gem":       text = "A %s. I love the color! Very sparkly." % variant
 				_:           text = "The %s — yes. That one I liked." % variant
 			liked_lines.append({"speaker": "Princess", "text": text})
 		elif variant == prefs["disliked"]:
@@ -179,7 +180,7 @@ func generate_retry_dialogue() -> Array:
 				"Chocolate": text = "I'm not saying anything about the chocolate."
 				"Gem":       text = "The gem was... a choice."
 				_:           text = "The %s. No." % category
-			other_lines.append({"speaker": "Princess", "text": text})
+			hated_lines.append({"speaker": "Princess", "text": text})
 		else:
 			var text: String
 			match category:
@@ -189,14 +190,17 @@ func generate_retry_dialogue() -> Array:
 				"Chocolate": text = "The chocolate was... adequate."
 				"Gem":       text = "The gem was okay."
 				_:           text = "The %s was fine." % category
-			other_lines.append({"speaker": "Princess", "text": text})
+			fine_lines.append({"speaker": "Princess", "text": text})
 
 	# Build result: liked first, then others, capped at 3 lines
 	var result: Array = []
+	for l in hated_lines:
+		if result.size() < 3:
+			result.append(l)
 	for l in liked_lines:
 		if result.size() < 3:
 			result.append(l)
-	for l in other_lines:
+	for l in fine_lines:
 		if result.size() < 3:
 			result.append(l)
 

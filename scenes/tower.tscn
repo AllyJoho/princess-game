@@ -18,7 +18,7 @@ script = ExtResource("1_ay4al")
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=1910337478]
 scroll_scale = Vector2(1, 0.5)
 
-[node name="Temp_Background" type="Sprite2D" parent="Parallax2D" unique_id=1953996232]
+[node name="Background" type="Sprite2D" parent="Parallax2D" unique_id=1953996232]
 position = Vector2(0, -390)
 scale = Vector2(2, 2)
 texture = ExtResource("2_qfw7u")

@@ -60,6 +60,7 @@ func play_dialogue(lines: Array) -> void:
 	panel.visible = true
 	get_tree().paused = true
 	_show_line(_current_index)
+	GameState.pause_enabled = false
 
 
 static func line(speaker: String, text: String) -> Dictionary:
@@ -98,6 +99,7 @@ func _finish() -> void:
 	panel.visible = false
 	get_tree().paused = false
 	emit_signal("dialogue_finished")
+	GameState.pause_enabled = true
 
 
 func _color_for_speaker(speaker: String) -> String:
