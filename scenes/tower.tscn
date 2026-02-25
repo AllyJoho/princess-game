@@ -10,8 +10,7 @@
 [ext_resource type="PackedScene" path="res://scenes/dragon.tscn" id="9_drag"]
 [ext_resource type="PackedScene" path="res://scenes/balcony_princess.tscn" id="10_balc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_princess"]
-size = Vector2(200, 300)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qfw7u"]
 
 [node name="Tower" type="Node2D" unique_id=1034955630]
 script = ExtResource("1_ay4al")
@@ -33,6 +32,7 @@ position = Vector2(0, 32)
 visible = false
 
 [node name="End_Interface" parent="." unique_id=1474081801 instance=ExtResource("5_jfguu")]
+visible = false
 position = Vector2(470, -2002)
 
 [node name="Cutscene" parent="." unique_id=1626482779 instance=ExtResource("7_cut")]
@@ -40,16 +40,21 @@ dragon_path = NodePath("../DragonLayer/Dragon")
 
 [node name="Princess" type="Area2D" parent="." unique_id=45817184]
 position = Vector2(470, -2002)
-collision_layer = 1
-collision_mask = 1
 script = ExtResource("8_pri")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Princess" unique_id=321654987]
-shape = SubResource("RectangleShape2D_princess")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Princess" unique_id=1485225336]
+position = Vector2(-250, 0)
+scale = Vector2(25, 10)
+shape = SubResource("RectangleShape2D_qfw7u")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Princess" unique_id=2113573580]
+position = Vector2(-14, 130)
+scale = Vector2(4, 5)
+shape = SubResource("RectangleShape2D_qfw7u")
 
 [node name="DragonLayer" type="CanvasLayer" parent="." unique_id=112233445]
 
 [node name="Dragon" parent="DragonLayer" unique_id=556677889 instance=ExtResource("9_drag")]
 
 [node name="BalconyPrincess" parent="." unique_id=998877665 instance=ExtResource("10_balc")]
-position = Vector2(470, -2002)
+position = Vector2(548, -1860)

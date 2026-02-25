@@ -202,7 +202,7 @@ func generate_retry_dialogue() -> Array:
 
 	var dragon_line: String
 	if any_liked:
-		dragon_line = "She didn't eat you. Progress."
+		dragon_line = "She didn't have me eat you. Progress."
 	else:
 		dragon_line = "Well. At least you tried. Mostly."
 	result.append({"speaker": "Dragon", "text": dragon_line})
