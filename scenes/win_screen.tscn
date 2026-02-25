@@ -5,6 +5,7 @@ script/source = "extends Node2D
 
 func _ready() -> void:
 	get_tree().paused = false
+	$CanvasLayer/VBoxContainer/TimeLabel.text = \"Time: \" + str(snapped(GameState.final_time, 0.01)) + \"s\"
 
 func _on_restart_pressed() -> void:
 	GameState.new_game()
@@ -45,6 +46,13 @@ layout_mode = 2
 text = "Worth the climb after all."
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 28
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = ""
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
 
 [node name="Spacer" type="Control" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2

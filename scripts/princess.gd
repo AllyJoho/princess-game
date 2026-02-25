@@ -38,6 +38,7 @@ func _play_anim(anim_name: String) -> void:
 
 
 func _evaluate() -> void:
+	GameState.stop_timer()
 	var outcome = GameState.evaluate_outcome()
 	match outcome:
 		GameState.Outcome.WIN:
@@ -69,7 +70,8 @@ func _do_retry() -> void:
 		balcony.run_in()
 	await get_tree().create_timer(0.8).timeout
 	_play_anim("idle")  # swap "idle" for "push" once that animation exists in the sprite sheet
-	_cutscene.play_retry_ending()
+	var extra = GameState.generate_retry_dialogue()
+	_cutscene.play_retry_ending(extra)
 	await _cutscene.dialogue_finished
 
 	# Prepare hint and reset BEFORE reload so tower.gd picks it up
