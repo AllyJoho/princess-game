@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bvs3nicr3sxv6" path="res://scenes/end_interface.tscn" id="5_jfguu"]
 [ext_resource type="PackedScene" uid="uid://cuxcut0scn001" path="res://scenes/cutscene.tscn" id="7_cut"]
 [ext_resource type="Script" uid="uid://dxiq5bxq4cd0j" path="res://scripts/princess.gd" id="8_pri"]
-[ext_resource type="PackedScene" uid="uid://dragonscene01" path="res://scenes/dragon.tscn" id="9_drag"]
-[ext_resource type="PackedScene" uid="uid://balcprinc001" path="res://scenes/balcony_princess.tscn" id="10_balc"]
+[ext_resource type="PackedScene" path="res://scenes/dragon.tscn" id="9_drag"]
+[ext_resource type="PackedScene" path="res://scenes/balcony_princess.tscn" id="10_balc"]
 
 [node name="Tower" type="Node2D" unique_id=1034955630]
 script = ExtResource("1_ay4al")

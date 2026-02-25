@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://balcprinc001"]
+[gd_scene format=3]
 
-[ext_resource type="Script" uid="uid://balcprincess1" path="res://scripts/balcony_princess.gd" id="1_balc"]
+[ext_resource type="Script" path="res://scripts/balcony_princess.gd" id="1_balc"]
 [ext_resource type="Texture2D" uid="uid://bjbuwxftg8fna" path="res://assets/sprites/player/knight.png" id="2_balc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_princ0"]

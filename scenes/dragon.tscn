@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dragonscene01"]
+[gd_scene format=3]
 
-[ext_resource type="Texture2D" uid="uid://d35bjyn6vqy8w" path="res://assets/dragon.png" id="1_drag"]
+[ext_resource type="Texture2D" uid="uid://d05qjq1ghtc1n" path="res://assets/sprites/npc/dragon.png" id="1_drag"]
 
 [sub_resource type="Animation" id="Animation_slidein"]
 resource_name = "slide_in"
