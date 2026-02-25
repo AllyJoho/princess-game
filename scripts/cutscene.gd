@@ -29,6 +29,8 @@ var _waiting_for_input: bool = false
 func _ready() -> void:
 	panel.visible = false
 	set_process_unhandled_input(true)
+	if _dragon:
+		_dragon.visible = false
 
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -111,13 +113,13 @@ func _color_for_speaker(speaker: String) -> String:
 # ────────────────────────────────────────────
 
 func _dragon_slide_in() -> void:
-	if _dragon and _dragon.has_node("AnimationPlayer"):
-		_dragon.get_node("AnimationPlayer").play("slide_in")
+	if _dragon:
+		_dragon.visible = true
 
 
 func _dragon_slide_out() -> void:
-	if _dragon and _dragon.has_node("AnimationPlayer"):
-		_dragon.get_node("AnimationPlayer").play("slide_out")
+	if _dragon:
+		_dragon.visible = false
 
 
 func play_intro() -> void:
