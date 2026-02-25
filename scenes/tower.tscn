@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ckrrekfaq6drn" path="res://scripts/tower.gd" id="1_ay4al"]
 [ext_resource type="PackedScene" uid="uid://xnlp11j8skng" path="res://scenes/Player.tscn" id="2_ktxwe"]
-[ext_resource type="Texture2D" uid="uid://dv7s0usj6tupv" path="res://assets/background.png" id="2_qrbg1"]
+[ext_resource type="Texture2D" uid="uid://k4asciovhi7x" path="res://assets/background/background_refrence.png" id="2_qfw7u"]
 [ext_resource type="PackedScene" uid="uid://ixut5uch0c0w" path="res://menus/pause_menu.tscn" id="4_qrbg1"]
 [ext_resource type="PackedScene" uid="uid://bvs3nicr3sxv6" path="res://scenes/end_interface.tscn" id="5_jfguu"]
 [ext_resource type="PackedScene" uid="uid://cuxcut0scn001" path="res://scenes/cutscene.tscn" id="7_cut"]
@@ -10,8 +10,7 @@
 [ext_resource type="PackedScene" path="res://scenes/dragon.tscn" id="9_drag"]
 [ext_resource type="PackedScene" path="res://scenes/balcony_princess.tscn" id="10_balc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_princess"]
-size = Vector2(200, 300)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qfw7u"]
 
 [node name="Tower" type="Node2D" unique_id=1034955630]
 script = ExtResource("1_ay4al")
@@ -19,10 +18,10 @@ script = ExtResource("1_ay4al")
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=1910337478]
 scroll_scale = Vector2(1, 0.5)
 
-[node name="Temp_Background" type="Sprite2D" parent="Parallax2D" unique_id=1953996232]
+[node name="Background" type="Sprite2D" parent="Parallax2D" unique_id=1953996232]
 position = Vector2(0, -390)
 scale = Vector2(2, 2)
-texture = ExtResource("2_qrbg1")
+texture = ExtResource("2_qfw7u")
 
 [node name="Knight" parent="." unique_id=1334906514 instance=ExtResource("2_ktxwe")]
 position = Vector2(0, 32)
@@ -33,6 +32,7 @@ position = Vector2(0, 32)
 visible = false
 
 [node name="End_Interface" parent="." unique_id=1474081801 instance=ExtResource("5_jfguu")]
+visible = false
 position = Vector2(470, -2002)
 
 [node name="Cutscene" parent="." unique_id=1626482779 instance=ExtResource("7_cut")]
@@ -40,16 +40,21 @@ dragon_path = NodePath("../DragonLayer/Dragon")
 
 [node name="Princess" type="Area2D" parent="." unique_id=45817184]
 position = Vector2(470, -2002)
-collision_layer = 1
-collision_mask = 1
 script = ExtResource("8_pri")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Princess" unique_id=321654987]
-shape = SubResource("RectangleShape2D_princess")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Princess" unique_id=1485225336]
+position = Vector2(-250, 0)
+scale = Vector2(25, 10)
+shape = SubResource("RectangleShape2D_qfw7u")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Princess" unique_id=2113573580]
+position = Vector2(-14, 130)
+scale = Vector2(4, 5)
+shape = SubResource("RectangleShape2D_qfw7u")
 
 [node name="DragonLayer" type="CanvasLayer" parent="." unique_id=112233445]
 
 [node name="Dragon" parent="DragonLayer" unique_id=556677889 instance=ExtResource("9_drag")]
 
 [node name="BalconyPrincess" parent="." unique_id=998877665 instance=ExtResource("10_balc")]
-position = Vector2(470, -2002)
+position = Vector2(548, -1860)
